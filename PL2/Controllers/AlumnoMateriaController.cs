@@ -8,7 +8,7 @@ namespace PL2.Controllers
 {
     public class AlumnoMateriaController : Controller
     {
-
+        
         public ActionResult GetAll()
         {
             ML.Alumno alumno = new ML.Alumno();

@@ -24,7 +24,7 @@
             <div class="form-group">
                 <div class="col-md-2">
                     @Html.LabelFor(model => model.Alumno.Nombre, new { @class = "control-label", @readonly = true })
-                    @Html.TextBoxFor(model => model.Alumno.Nombre, new { @class = "form-control", @readonly = true })
+                    <input type="text" name="Alumno.Nombre" class="form-control"/>
                     @Html.ValidationMessageFor(model => model.Alumno.Nombre)
                 </div>
             </div>
@@ -63,17 +63,23 @@
                             @alumnomateria.Materia.IdMateria
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" value="@alumnomateria.Materia.IdMateria" name="AlumnoMaterias">
+                            <input id="checkbox_@alumnomateria.Materia.IdMateria" type="checkbox"  value="@alumnomateria.Materia.IdMateria" name="AlumnoMaterias" onclick="CalcularTotal(@alumnomateria.Materia.Costo, @alumnomateria.Materia.IdMateria)">
                         </td>
                         <td class="text-left">
-                            @alumnomateria.Materia.Nombre
+                            @alumnomateria.Materia.Nombre 
                         </td>
                         <td class="text-left">
                             @alumnomateria.Materia.Costo
                         </td>
                     </tr>
                 }
+            <tr>
+                <td class="text-center">Total:</td>
+                <td></td>
+                <td id="total" class="text-center">0</td>
+            </tr>
             </table>
+
             <div class="form-group col-md-12">
                 <div class="text-right">
                     <input class="btn btn-success" type="submit" value="Actualizar" />
@@ -85,3 +91,17 @@
 }
 
 </div>
+<script type="text/javascript">
+
+    function CalcularTotal(Costo, IdMateria) {
+        if ($('#checkbox_' + IdMateria).is(':checked')) {
+            var total = parseInt($('#total').text())
+            total = total + Costo;
+            $('#total').text(total)
+        }
+        else {
+
+        }
+
+    }
+</script>

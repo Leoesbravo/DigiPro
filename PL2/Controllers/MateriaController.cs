@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
+using System.Configuration;
 
 namespace PL2.Controllers
 {
@@ -54,7 +55,7 @@ namespace PL2.Controllers
                 using (var client = new HttpClient())
                     try
                     {
-                        client.BaseAddress = new Uri("http://localhost:18999/api/");
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApi"]);
                         var responseTask = client.GetAsync("Materia/GetById/" + IdMateria);
                         responseTask.Wait();
                         var resultAPI = responseTask.Result;
